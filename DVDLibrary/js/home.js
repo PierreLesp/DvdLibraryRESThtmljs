@@ -7,6 +7,13 @@ $('document').ready(function() {
         $('#dvdList').hide();
     });
 
+    $('#getBackButton').click(function (event) {
+
+        $('#displayDvdInfos').hide();
+        $('#dvdList').show();
+    });
+
+    
 
     addDVD();
     updateDVD();
@@ -31,7 +38,7 @@ function displayDvds() {
 
         // build a table using the retrieved values
         var row = "<tr>";
-        row += '<td><a onclick="showDvdDetails('+id+')">' + title + "</a></td>";
+        row += '<td><a href="" onclick="showDvdDetails(' + id +')">' + title + "</a></td>";
         row += "<td>" + releaseYear + "</td>";
         row += "<td>" + director + "</td>";
         row += "<td>" + rating + "</td>";
@@ -64,8 +71,38 @@ function clearDvdTable() {
 
 function showDvdDetails(id) {
 
+    $('#dvdList').hide();
 
+
+    $.ajax({
+        type: "GET",
+        url: "http://dvd-library.us-east-1.elasticbeanstalk.com/dvd/" + id +"",
+        success: function (dvd) {
+
+            
+
+            var content = "<h1>";
+
+            var title = dvd.title;
+            var year = dvd.releaseYear;
+            var director = dvd.director;
+            var rating = dvd.rating;
+            var notes = dvd.notes;
+
+            document.getElementById('displayTitleLabel').innerHTML = title;
+            
+        },
+    
+        // create error function to display API error messages
+        error: function () {
+          
+
+        }
+      });
 }
+
+
+
 
 function updateDVD(DVDId) {
     $('#updateButton').click(function(event) {

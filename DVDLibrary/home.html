@@ -177,7 +177,7 @@
             </div>
         </div>
 
-        <div id="editFormDiv">
+        <div class="col-md-6" id="editFormDiv" style="display:none;">
             <h2>Edit DVD:</h2>
             <hr>
             <form class="form-horizontal" role="form" id="editForm">
@@ -270,9 +270,37 @@
         </div>
 
 
-        <div>
+        <div id='displayDvdInfos' style="display:none;">
+
+            <label class="col-md-4 control-label" id="displayTitleLabel">
+                
+            </label>
             <!-- Display a single DVD -->
 
+            <hr>
+
+            <label class="col-md-4 control-label" id="displayReleaseYearLabel">
+                
+            </label>
+
+            <label class="col-md-4 control-label" id="displayDirectorLabel">
+                
+            </label>
+
+            <label class="col-md-4 control-label" id="displayRatingLabel">
+                
+            </label>
+
+
+            <label class="col-md-4 control-label" id="displayNotesLabel">
+                
+            </label>
+
+            <button type="button"
+                id="getBackButton"
+                class="btn btn-success">Back</button>
+
+            
         </div>
     </div>
 
