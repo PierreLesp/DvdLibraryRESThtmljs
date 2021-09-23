@@ -31,7 +31,7 @@ function displayDvds() {
 
         // build a table using the retrieved values
         var row = "<tr>";
-        row += '<td><a onclick="showDvdDetails('+id+')">' + title + "</a></td>";
+        row += '<td><a href="#" onclick="showDvdDetails('+id+')">' + title + "</a></td>";
         row += "<td>" + releaseYear + "</td>";
         row += "<td>" + director + "</td>";
         row += "<td>" + rating + "</td>";
