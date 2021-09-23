@@ -29,7 +29,95 @@
 
 
     <div>
-        <!-- EDIT DVD-->
+        <div id="editFormDiv" style="display:none;">
+                <h2>Edit DVD:</h2>
+                <hr>
+                <form class="form-horizontal" role="form" id="editForm">
+                    <div class="form-group row">
+                        <label for="editTitle" class="col-md-4 control-label">
+                            DVD Title:
+                        </label>
+
+                        <div class="col-md-8">
+                            <input type="text" 
+                                   class="form-control"
+                                   id="editTitle"
+                                   placeholder="Title" 
+                                   required>
+                        </div>
+                    </div>
+                    <div class="form-group row"> 
+                        <label for="editReleaseYear" class="col-md-4 control-label">
+                            Release Year:
+                        </label>
+
+                        <div class="col-md-8">
+                            <input type="text" 
+                                   class="form-control"
+                                   id="editReleaseYear"
+                                   placeholder="Release Year" 
+                                   required>
+                        </div>
+                    </div>
+                    <div class="form-group row"> 
+                        <label for="editDirector" class="col-md-4 control-label">
+                            Director:
+                        </label>
+
+                        <div class="col-md-8">
+                            <input type="text" 
+                                   class="form-control"
+                                   id="editDirector"
+                                   placeholder="Director" 
+                                   required>
+                        </div>
+                    </div>
+                    <div class="form-group row"> 
+                        <label for="editRating" class="col-md-4 control-label">
+                            Rating:
+                        </label>
+
+                        <div class="col-md-8">
+                            <input type="email" 
+                                   class="form-control"
+                                   id="editRating"
+                                   placeholder="Email" 
+                                   required>
+                        </div>
+                    </div>
+                    <div class="form-group row"> 
+                        <label for="editNotes" class="col-md-4 control-label">
+                            Notes:
+                        </label>
+
+                        <div class="col-md-8">
+                            <input type="text" 
+                                   class="form-control"
+                                   id="editNotes"
+                                   placeholder="Phone" 
+                                   required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="offset-md-3 col-md-3">
+                            <input type="hidden" id="editDVDId">
+                            <button type="button"
+                                    id="editCancelButton"
+                                    class="btn btn-danger"
+                                    onclick="hideEditForm()">
+                                Cancel
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button"
+                                    id="updateButton"
+                                    class="btn btn-success">
+                                Save Changes
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
     </div>
 
 
