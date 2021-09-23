@@ -1,10 +1,12 @@
 $('document').ready(function() {
 
-    $('#addButton').click(function (event) {
+    $('#createButton').click(function (event) {
 
-        $('#addForm').hide();
-        $('#contactTableDiv').show();
+        $('#addForm').show();
+        $('#dvdList').hide();
     });
+
+
     addDVD();
     updateDVD();
 });
@@ -129,10 +131,10 @@ function addDVD() {
                $('#addRating').val('G');
                $('#addNotes').val('');
                
-               // TODO // MAKE
-               // 
-               //clearContactTable();
-               //loadContacts();
+
+               $('#addForm').hide();
+               $('#dvdList').show();
+
            },
            error: function () {
                /*$('#errorMessages')
