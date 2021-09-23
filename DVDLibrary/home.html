@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     <!-- Additional CSS files here -->
-
+    <link rel="stylesheet" type="text/css" href="./css/home.css"/>
   </head>
 
   <body>
@@ -125,7 +125,7 @@
 
 
     <div>
-        <div id="editFormDiv" style="display:none;">
+        <div id="editFormDiv">
                 <h2>Edit DVD:</h2>
                 <hr>
                 <form class="form-horizontal" role="form" id="editForm">
@@ -136,7 +136,7 @@
 
                         <div class="col-md-8">
                             <input type="text" 
-                                   class="form-control"
+                                   class="form-control editInput"
                                    id="editTitle"
                                    placeholder="Title" 
                                    required>
@@ -149,7 +149,7 @@
 
                         <div class="col-md-8">
                             <input type="text" 
-                                   class="form-control"
+                                   class="form-control editInput"
                                    id="editReleaseYear"
                                    placeholder="Release Year" 
                                    required>
@@ -162,7 +162,7 @@
 
                         <div class="col-md-8">
                             <input type="text" 
-                                   class="form-control"
+                                   class="form-control editInput"
                                    id="editDirector"
                                    placeholder="Director" 
                                    required>
@@ -172,13 +172,13 @@
                         <label for="editRating" class="col-md-4 control-label">
                             Rating:
                         </label>
-
                         <div class="col-md-8">
-                            <input type="email" 
-                                   class="form-control"
-                                   id="editRating"
-                                   placeholder="Email" 
-                                   required>
+                            <select id="editRating" required>
+                                <option value="g">G</option>
+                                <option value="thirteen">13+</option>
+                                <option value="sixteen">16+</option>
+                                <option value="eighteen">18+</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row"> 
@@ -188,9 +188,9 @@
 
                         <div class="col-md-8">
                             <input type="text" 
-                                   class="form-control"
+                                   class="form-control notesInput"
                                    id="editNotes"
-                                   placeholder="Phone" 
+                                   placeholder="" 
                                    required>
                         </div>
                     </div>
