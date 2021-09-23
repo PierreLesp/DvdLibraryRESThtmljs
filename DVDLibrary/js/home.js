@@ -31,7 +31,7 @@ function displayDvds() {
 
         // build a table using the retrieved values
         var row = "<tr>";
-        row += '<td><a onclick="showDvdDetails()">' + title + "</a></td>";
+        row += '<td><a onclick="showDvdDetails('+id+')">' + title + "</a></td>";
         row += "<td>" + releaseYear + "</td>";
         row += "<td>" + director + "</td>";
         row += "<td>" + rating + "</td>";
@@ -59,10 +59,11 @@ function displayDvds() {
 }
 
 function clearDvdTable() {
-
+    $('#contentRows').empty();
 }
 
-function showDvdDetails() {
+function showDvdDetails(id) {
+
 
 }
 
@@ -189,7 +190,9 @@ function addDVD() {
                $('#addNotes').val('');
                
 
-               $('#addForm').hide();
+               $('#addFormDiv').hide();
+               
+               displayDvds();
                $('#dvdList').show();
 
            },
@@ -202,4 +205,30 @@ function addDVD() {
            }
         })
     });
+}
+
+
+
+function checkAndDisplayValidationErrors(input) {
+    $('#errorMessages').empty();
+    
+    var errorMessages = [];
+    
+    input.each(function() {
+        if (!this.validity.valid) {
+            var errorField = $('label[for=' + this.id + ']').text();
+            errorMessages.push(errorField + ' ' + this.validationMessage);
+        }  
+    });
+    
+    if (errorMessages.length > 0){
+        $.each(errorMessages,function(index,message) {
+            $('#errorMessages').append($('<li>').attr({class: 'list-group-item list-group-item-danger'}).text(message));
+        });
+        // return true, indicating that there were errors
+        return true;
+    } else {
+        // return false, indicating that there were no errors
+        return false;
+    }
 }
