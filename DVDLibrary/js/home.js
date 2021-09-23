@@ -1,5 +1,11 @@
 $('document').ready(function() {
 
+    $('#addButton').click(function (event) {
+
+        $('#addForm').hide();
+        $('#contactTableDiv').show();
+    });
+    addDVD();
     updateDVD();
 });
 
@@ -84,4 +90,56 @@ function hideEditForm() {
 
     //$('#DVDTableDiv').show();
     $('#editFormDiv').hide();
+}
+
+
+
+
+function addDVD() {
+    $('#addButton').click(function (event) {
+        
+        var haveValidationErrors = checkAndDisplayValidationErrors($('#addForm').find('input'));
+        
+        if(haveValidationErrors) {
+            return false;
+        }
+
+
+
+        $.ajax({
+           type: 'POST',
+           url: 'http://dvd-library.us-east-1.elasticbeanstalk.com/dvd',
+           data: JSON.stringify({
+                title: $('#addTitle').val(),
+                releaseYear: $('#addReleaseYear').val(),
+                director: $('#addDirector').val(),
+                rating: $('#addRating').val(),
+                notes: $('#addNotes').val()
+           }),
+           headers: {
+               'Accept': 'application/json',
+               'Content-Type': 'application/json'
+           },
+           'dataType': 'json',
+           success: function() {
+               // $('#errorMessages').empty();
+               $('#addTitle').val('');
+               $('#addReleaseYear').val('');
+               $('#addDirector').val('');
+               $('#addRating').val('G');
+               $('#addNotes').val('');
+               
+               // TODO // MAKE
+               // 
+               //clearContactTable();
+               //loadContacts();
+           },
+           error: function () {
+               $('#errorMessages')
+                .append($('<li>')
+                .attr({class: 'list-group-item list-group-item-danger'})
+                .text('Error calling web service. Please try again later.')); 
+           }
+        })
+    });
 }
