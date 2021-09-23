@@ -17,11 +17,107 @@
   <body>
 
 
-    <div>
-        <!-- CREATE -->
+    <div class="col-md-6" id="addFormDiv"> 
 
-        <h1> Hellow World! </h1>
-    </div>
+        
+            <form class="form-horizontal" role="form" id="addForm">
+                <!--  -->
+                <div class="form-group row">
+                    <h2>Add New Dvd</h2>
+                </div>
+
+
+                <div class="form-group row">
+                    <label for="addTitle" class="col-md-4 control-label">
+                        Title:
+                    </label>
+        
+                    <div class="col-md-8">
+                        <input type="text" 
+                            class="form-control"
+                            id="addTitle"
+                            placeholder="Title" 
+                            required>
+                    </div>
+                </div>
+                
+                <div class="form-group row"> 
+                    <label for="addReleaseYear" class="col-md-4 control-label">
+                        Release Year:
+                    </label>
+            
+                    <div class="col-md-8">
+                        <input type="text" 
+                               class="form-control"
+                               id="addReleaseYear"
+                               placeholder="Release Year" 
+                               required>
+                    </div>
+                </div>
+
+                <!--  COMPANY -->
+                <div class="form-group row"> 
+                    <label for="addDirector" class="col-md-4 control-label">
+                        Director:
+                    </label>
+            
+                    <div class="col-md-8">
+                        <input type="text" 
+                               class="form-control"
+                               id="addDirector"
+                               placeholder="Director" 
+                               required>
+                    </div>
+                </div>
+
+                <!--  EMAIL "REQUIRED" -->
+                <div class="form-group row"> 
+                    <label for="addRating" class="col-md-4 control-label">
+                        Rating:
+                    </label>
+            
+                    <div class="col-md-8">
+                        <select id="addRating" name="Rating">
+                            <option value="G">G</option>
+                            <option value="13+">13+</option>
+                            <option value="16+">16+</option>
+                            <option value="18+">18+</option>
+                          </select>
+                    </div>
+                </div>
+
+                <!--  PHONE NUMBER -->
+                <div class="form-group row"> 
+                    <label for="addNotes" class="col-md-4 control-label">
+                        Notes:
+                    </label>
+            
+                    <div class="col-md-8">
+                        <textarea 
+                               class="form-control"
+                               id="addNotes"
+                               placeholder="Notes" 
+                               required> 
+                        </textarea>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="offset-md-4 col-md-8">
+                        <button type="button"
+                                id="addButton"
+                                class="btn btn-primary">
+                            Create Dvd Entry
+                        </button>
+                    </div>
+                </div>
+
+
+            </form>
+    </div> 
+</div>
+
+
 
     <div>
         <!--- HOME PAGE  DISPLAY LIST-->
