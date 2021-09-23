@@ -1,7 +1,62 @@
 $('document').ready(function() {
+    displayDvds();
 
     updateDVD();
 });
+
+function displayDvds() {
+    clearDvdTable();
+  var contentRows = $("#contentRows");
+
+  // retrieve and display existing data using GET request
+  $.ajax({
+    type: "GET",
+    url: "http://dvd-library.us-east-1.elasticbeanstalk.com/dvds",
+    success: function (dvdArray) {
+      $.each(dvdArray, function (index, dvd) {
+        //retrieve and store the values
+        var title = dvd.title;
+        var releaseYear = dvd.releaseYear;
+        var director = dvd.director;
+        var rating = dvd.rating;
+        var id = dvd.id;
+
+        // build a table using the retrieved values
+        var row = "<tr>";
+        row += '<td><a onclick="showDvdDetails()">' + title + "</a></td>";
+        row += "<td>" + releaseYear + "</td>";
+        row += "<td>" + director + "</td>";
+        row += "<td>" + rating + "</td>";
+        row +=
+          '<td><button type="button" class="btn btn-info" onclick="showEditForm(' +
+          id +
+          ')">Edit</button><button type="button" class="btn btn-danger" onclick="deleteDvd(' +
+          id +
+          ')">Delete</button></td>';          
+        row += "</tr>";
+
+        contentRows.append(row);
+      });
+    },
+
+    // create error function to display API error messages
+    error: function () {
+      $("#errorMessages").append(
+        $("<li>")
+          .attr({ class: "list-group-item list-group-item-danger" })
+          .text("Error calling web service. Please try again later.")
+      );
+    },
+  });
+}
+
+function clearDvdTable() {
+
+}
+
+function showDvdDetails() {
+
+}
 
 function updateDVD(DVDId) {
     $('#updateButton').click(function(event) {
@@ -69,7 +124,7 @@ function showEditForm(DVDId) {
         }
     })
     
-    $('#contactTableDiv').hide();
+    $('#dvdTableDiv').hide();
     $('#editFormDiv').show();
 }
 
@@ -84,4 +139,8 @@ function hideEditForm() {
 
     //$('#DVDTableDiv').show();
     $('#editFormDiv').hide();
+}
+
+function deleteDvd(dvdId) {
+    
 }

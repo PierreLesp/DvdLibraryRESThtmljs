@@ -118,7 +118,7 @@
         <div id="dvdList">
             <!--- HOME PAGE  DISPLAY LIST-->
 
-            <h1 class="text-center mb-5">DVD Library</h1>
+            <h1 class="text-center mt-4" style="margin-bottom:31px;">DVD Library</h1>
             
 
             <div class="row">
@@ -131,23 +131,23 @@
                 </div>
                 <form class="col-md-8" role="form" id="searchForm">
                     <div class="form-group row">
-                        <select class="form-control col-md-2" id="searchCategory">
+                        <select class="form-control col-md-4" id="searchCategory" required>
+                            <option val="">Search Category</option>
                             <option>Title</option>
                             <option>Release Year</option>
                             <option>Director Name</option>
                             <option>Rating</option>
-                            <option>5</option>
                         </select>
                         
 
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <input type="text" 
                                 class="form-control"
                                 id="searchTerm"
                                 placeholder="Search" 
                                 required>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2 pl-0">
                             <button type="button"
                                     id="addButton"
                                     class="btn btn-primary">
@@ -155,14 +155,28 @@
                             </button>
                         </div>
                     </div>
-                </form>
-
-
-
-                <div class="col-md-6">
-                    
-                </div>
+                </form>                
             </div>
+
+            <div class="row">
+                <!-- container for table -->
+                <table id="contactTable" class="table table-hover ">
+                    <thead>
+                        <tr>
+                            <th width="20%">Title</th>
+                            <th width="20%">Release Date</th>
+                            <th width="20%">Director</th>
+                            <th width="20%">Rating<th>
+                            <th width="20%"></th>
+                        </tr>
+                    </thead>
+                    <!-- we will add data rows dynamically to the tbody -->
+                    <tbody id="contentRows"></tbody>
+                </table>
+
+
+
+                
 
         </div>
 
