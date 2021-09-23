@@ -135,10 +135,11 @@ function addDVD() {
                //loadContacts();
            },
            error: function () {
-               $('#errorMessages')
+               /*$('#errorMessages')
                 .append($('<li>')
                 .attr({class: 'list-group-item list-group-item-danger'})
                 .text('Error calling web service. Please try again later.')); 
+                */
            }
         })
     });
