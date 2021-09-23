@@ -2,7 +2,7 @@ $('document').ready(function() {
 
     $('#createButton').click(function (event) {
 
-        $('#addForm').show();
+        $('#addFormDiv').show();
         $('#dvdList').hide();
     });
 
