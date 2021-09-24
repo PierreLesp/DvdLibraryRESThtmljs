@@ -20,8 +20,8 @@ $('document').ready(function() {
 });
 
 function displayDvds() {
-  clearDvdTable();
-  hideEditForm();
+    $('#dvdList').show();
+  clearDvdTableRows();
 
   var contentRows = $("#contentRows");
 
@@ -69,7 +69,7 @@ function displayDvds() {
   });
 }
 
-function clearDvdTable() {
+function clearDvdTableRows() {
     $('#contentRows').empty();
 }
 
@@ -148,6 +148,7 @@ function updateDVD(DVDId) {
 
 function showEditForm(DVDId) {
     //$('#errorMessages').empty();
+    $("#dvdList").hide();
     
     $.ajax({
         type: 'GET',
@@ -187,7 +188,7 @@ function hideEditForm() {
     $('#editRating').val('');
     $('#editNotes').val('');
 
-    //$('#DVDTableDiv').show();
+    displayDvds();
     $('#editFormDiv').hide();
 }
 

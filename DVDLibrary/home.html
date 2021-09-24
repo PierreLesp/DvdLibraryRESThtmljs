@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <title>Dvd Library</title>
+        <title>DVD Library</title>
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -15,21 +15,21 @@
     </head>
     <body>
         <div class="container">
-            <h1 class="text-center mt-4" style="margin-bottom:31px;">DVD Library</h1>
+            <div class="mt-5" id="addFormDiv" style="display:none;"> 
+                <h2>Create DVD</h2>
+                <hr>
 
-            <div class="col-md-6" id="addFormDiv" style="display:none;"> 
-                <form class="form-horizontal" role="form" id="addForm">
-                    <!--  -->
-                    <div class="form-group row">
-                        <h2>Add Dvd</h2>
-                    </div>
+
+                <form class="form-horizontal mt-5" role="form" id="addForm">
+                    
+                   
 
                     <div class="form-group row">
                         <label for="addTitle" class="col-md-4 control-label">
                             Title:
                         </label>
             
-                        <div class="col-md-8">
+                        <div class="col-md-5">
                             <input type="text" 
                                 class="form-control"
                                 id="addTitle"
@@ -43,7 +43,7 @@
                             Release Year:
                         </label>
                 
-                        <div class="col-md-8">
+                        <div class="col-md-2">
                             <input type="text" 
                                     class="form-control"
                                     id="addReleaseYear"
@@ -58,7 +58,7 @@
                             Director:
                         </label>
                 
-                        <div class="col-md-8">
+                        <div class="col-md-4">
                             <input type="text" 
                                     class="form-control"
                                     id="addDirector"
@@ -89,7 +89,7 @@
                             Notes:
                         </label>
                 
-                        <div class="col-md-8">
+                        <div class="col-md-5">
                             <textarea 
                                     class="form-control"
                                     id="addNotes"
@@ -104,14 +104,14 @@
                             <button type="button"
                                     id="addButton"
                                     class="btn btn-primary">
-                                Create Dvd Entry
+                                Create DVD
                             </button>
                         </div>
                     </div>
                 </form>
             </div> 
 
-            <div id="dvdList">
+            <div id="dvdList" class="mt-5">
                 <!--- HOME PAGE  DISPLAY LIST-->            
 
                 <div class="row">
@@ -126,10 +126,10 @@
                         <div class="form-group row">
                             <select class="form-control col-md-4" id="searchCategory" required>
                                 <option val="">Search Category</option>
-                                <option>Title</option>
-                                <option>Release Year</option>
-                                <option>Director Name</option>
-                                <option>Rating</option>
+                                <option val="title">Title</option>
+                                <option val="year">Release Year</option>
+                                <option val="director">Director Name</option>
+                                <option val="rating">Rating</option>
                             </select>
                             
                             <div class="col-md-6">
@@ -152,8 +152,8 @@
 
                 <div class="row mt-2">
                     <!-- container for table -->
-                    <table id="contactTable" class="table table-hover ">
-                        <thead>
+                    <table id="dvdTable" class="table table-hover table-striped">
+                        <thead >
                             <tr>
                                 <th width="20%">Title</th>
                                 <th width="20%">Release Date</th>
@@ -168,9 +168,11 @@
                 </div>
             </div>
 
-            <div id="editFormDiv" style="display:none;">
-                <h2>Edit DVD</h2>
+            <div id="editFormDiv" class="mt-5" style="display:none;">
+                
+                <h2 >Edit DVD:</h2>
                 <hr>
+
                 <form class="form-horizontal" role="form" id="editForm">
                     <div class="form-group row">
                         <label for="editTitle" class="col-md-4 control-label">
