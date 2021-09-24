@@ -131,20 +131,10 @@ function updateDVD(DVDId) {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            'dataType': 'json',
             'success': function() {
                //$('#errorMessage').empty();
-               //   for some reason it will not go to 'success' even when postman says it is
-               /* alert( "EDIT SUCCESS." );
-               $('#editTitle').val('');
-               $('#editReleaseYear').val('');
-               $('#editDirector').val('');
-               $('#editNotes').val('');
-
-               $('#editFormDiv').hide();
+               hideEditForm();
                displayDvds();
-               $('#dvdList').show();
-               */
             },
             'error': function() {
                 /*$('#errorMessages')
@@ -154,17 +144,6 @@ function updateDVD(DVDId) {
             }
               
         })
-             // Dvd update is only displayed after page refresh. I suspect that there is a race condition due to Ajax
-             // being asyncronous 
-               $('#editTitle').val('');
-               $('#editReleaseYear').val('');
-               $('#editDirector').val('');
-               $('#editNotes').val('');
-
-               $('#editFormDiv').hide();
-               
-               displayDvds();
-              
     })
 }
 
