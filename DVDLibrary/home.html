@@ -21,7 +21,7 @@
                 <form class="form-horizontal" role="form" id="addForm">
                     <!--  -->
                     <div class="form-group row">
-                        <h2>Add New Dvd</h2>
+                        <h2>Add Dvd</h2>
                     </div>
 
                     <div class="form-group row">
@@ -108,8 +108,6 @@
                             </button>
                         </div>
                     </div>
-
-
                 </form>
             </div> 
 
@@ -152,7 +150,7 @@
                     </form>                
                 </div>
 
-                <div class="row">
+                <div class="row mt-2">
                     <!-- container for table -->
                     <table id="contactTable" class="table table-hover ">
                         <thead>
@@ -170,8 +168,8 @@
                 </div>
             </div>
 
-            <div id="editFormDiv">
-                <h2>Edit DVD:</h2>
+            <div id="editFormDiv" style="display:none;">
+                <h2>Edit DVD</h2>
                 <hr>
                 <form class="form-horizontal" role="form" id="editForm">
                     <div class="form-group row">
@@ -192,39 +190,38 @@
                             Release Year:
                         </label>
 
-                            <div class="col-md-8">
-                                <input type="text" 
-                                    class="form-control editInput"
-                                    id="editReleaseYear"
-                                    placeholder="Release Year" 
-                                    required>
-                            </div>
+                        <div class="col-md-8">
+                            <input type="text" 
+                                class="form-control editInput"
+                                id="editReleaseYear"
+                                placeholder="Release Year" 
+                                required>
                         </div>
+                
                     </div>
                     <div class="form-group row"> 
                         <label for="editDirector" class="col-md-4 control-label">
                             Director:
                         </label>
-                            <div class="col-md-8">
-                                <input type="text" 
-                                    class="form-control editInput"
-                                    id="editDirector"
-                                    placeholder="Director" 
-                                    required>
-                            </div>
+                        <div class="col-md-8">
+                            <input type="text" 
+                                class="form-control editInput"
+                                id="editDirector"
+                                placeholder="Director" 
+                                required>
                         </div>
-                        <div class="form-group row"> 
-                            <label for="editRating" class="col-md-4 control-label">
-                                Rating:
-                            </label>
-                            <div class="col-md-8">
-                                <select id="editRating" required>
-                                    <option value="g">G</option>
-                                    <option value="thirteen">13+</option>
-                                    <option value="sixteen">16+</option>
-                                    <option value="eighteen">18+</option>
-                                </select>
-                            </div>
+                    </div>
+                    <div class="form-group row"> 
+                        <label for="editRating" class="col-md-4 control-label">
+                            Rating:
+                        </label>
+                        <div class="col-md-8">
+                            <select id="editRating" required>
+                                <option value="g">G</option>
+                                <option value="thirteen">13+</option>
+                                <option value="sixteen">16+</option>
+                                <option value="eighteen">18+</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row"> 
@@ -232,14 +229,14 @@
                             Notes:
                         </label>
 
-                            <div class="col-md-8">
-                                <input type="text" 
-                                    class="form-control notesInput"
-                                    id="editNotes"
-                                    placeholder="" 
-                                    required>
-                            </div>
+                        <div class="col-md-8">
+                            <input type="text" 
+                                class="form-control notesInput"
+                                id="editNotes"
+                                placeholder="" 
+                                required>
                         </div>
+                
                     </div>
                     <div class="form-group row">
                         <div class="offset-md-3 col-md-3">
@@ -263,9 +260,37 @@
             </div>
 
 
-            <div>
+            <div id='displayDvdInfos' style="display:none;">
+
+                <label class="col-md-4 control-label" id="displayTitleLabel">
+                    
+                </label>
                 <!-- Display a single DVD -->
 
+                <hr>
+
+                <label class="col-md-4 control-label" id="displayReleaseYearLabel">
+                    
+                </label>
+
+                <label class="col-md-4 control-label" id="displayDirectorLabel">
+                    
+                </label>
+
+                <label class="col-md-4 control-label" id="displayRatingLabel">
+                    
+                </label>
+
+
+                <label class="col-md-4 control-label" id="displayNotesLabel">
+                    
+                </label>
+
+                <button type="button"
+                    id="getBackButton"
+                    class="btn btn-success">Back</button>
+
+                
             </div>
         </div>
 
