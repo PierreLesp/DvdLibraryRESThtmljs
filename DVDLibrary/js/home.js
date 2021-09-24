@@ -23,7 +23,6 @@ function displayDvds() {
     var contentRows = $("#contentRows");
 
     $('#contentRows').empty();
-    $('#dvdList').show();
 
   // retrieve and display existing data using GET request
   $.ajax({
@@ -55,8 +54,10 @@ function displayDvds() {
         row += "</tr>";
 
         contentRows.append(row);
-        $('#dvdList').show();
+        
       });
+
+      $('#dvdList').show();
     },
 
     // create error function to display API error messages
@@ -127,9 +128,9 @@ function updateDVD(DVDId) {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            'dataType': 'json',
             'success': function() {
-                hideEditForm();
+               //$('#errorMessage').empty();
+               hideEditForm();
             },
             'error': function() {
                 /*$('#errorMessages')
@@ -139,7 +140,6 @@ function updateDVD(DVDId) {
             }
               
         })
-              
     })
 }
 
@@ -195,8 +195,8 @@ function hideEditForm() {
     $('#editRating').val('');
     $('#editNotes').val('');
 
-    displayDvds();
     $('#editFormDiv').hide();
+    displayDvds();
 }
 
 function deleteDvd(dvdId) {
