@@ -1,4 +1,7 @@
 $('document').ready(function() {
+
+    console.log('Hellow World');
+
     displayDvds();
 
     $('#createButton').click(function (event) {
@@ -40,7 +43,7 @@ function displayDvds() {
         // build a table using the retrieved values
         var row = "<tr>";
         
-        row += '<td><a href="" onclick="showDvdDetails(' + id +')">' + title + "</a></td>";
+        row += '<td><a href="" onclick="showDvdDetails(' + id +'); return false;">' + title + "</a></td>";
 
         row += "<td>" + releaseYear + "</td>";
         row += "<td>" + director + "</td>";
@@ -73,6 +76,8 @@ function displayDvds() {
 
 function showDvdDetails(id) {
 
+    console.log('This is showDvdDetail');
+
     $('#dvdList').hide();
 
 
@@ -92,12 +97,18 @@ function showDvdDetails(id) {
             var notes = dvd.notes;
 
             document.getElementById('displayTitleLabel').innerHTML = title;
+            document.getElementById('displayReleaseYearLabel').innerHTML = year;
+            document.getElementById('displayDirectorLabel').innerHTML = director;
+            document.getElementById('displayRatingLabel').innerHTML = rating;
+            document.getElementById('displayNotesLabel').innerHTML = notes;
             
+            
+            $('#displayDvdInfos').show();
         },
     
         // create error function to display API error messages
         error: function () {
-          
+            console.log('error');
 
         }
       });
