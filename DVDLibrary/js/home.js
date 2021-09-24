@@ -124,6 +124,17 @@ function updateDVD(DVDId) {
         if(haveValidationErrors) {
             return false;
         }*/
+
+
+        if($('#editReleaseYear').val().length != 4)
+        {
+            $('#errorMessages').append($('<li>').attr({class: 'list-group-item list-group-item-danger'}).text('Need 4 digits - Release Year'));
+            return false;
+            
+        }
+
+        $('#errorMessage').empty();
+
         $.ajax({
             type: 'PUT',
             url: 'http://dvd-library.us-east-1.elasticbeanstalk.com/dvd/' + $('#editDVDId').val(),
@@ -140,14 +151,14 @@ function updateDVD(DVDId) {
                 'Content-Type': 'application/json'
             },
             'success': function() {
-               //$('#errorMessage').empty();
+               $('#errorMessage').empty();
                hideEditForm();
             },
             'error': function() {
-                /*$('#errorMessages')
+                $('#errorMessages')
                 .append($('<li>')
                 .attr({class: 'list-group-item list-group-item-danger'})
-                .text('Error calling web service. Please try again later.'));*/
+                .text('Error calling web service. Please try again later.'));
             }
               
         })
@@ -224,6 +235,14 @@ function addDVD() {
             return false;
         }
 
+        if($('#addReleaseYear').val().length != 4)
+        {
+            $('#errorMessages').append($('<li>').attr({class: 'list-group-item list-group-item-danger'}).text('Need 4 digits - Release Year'));
+            return false;
+            
+        }
+
+        $('#errorMessage').empty();
 
 
         $.ajax({
