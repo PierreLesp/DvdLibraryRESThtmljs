@@ -1,6 +1,9 @@
 $('document').ready(function() {
+
+    console.log('Hellow World');
+
     displayDvds();
-    hideEditForm();
+
     $('#createButton').click(function (event) {
 
         $('#addFormDiv').show();
@@ -19,9 +22,17 @@ $('document').ready(function() {
         displayDvds(selection);
     });
 
+    $('#deleteConfirmationModal').on('show.bs.modal', function(e) {
+
+        
+    });
+    
+
+
     addDVD();
     updateDVD();
 });
+
 
 function displayDvds(searchCategory) {
   clearDvdTable();
@@ -40,6 +51,8 @@ function displayDvds(searchCategory) {
   } else if(searchCategory === "rating") {
       category = "/rating";
   }
+  $('#contentRows').empty();
+
 
   // retrieve and display existing data using GET request
   $.ajax({
@@ -57,7 +70,7 @@ function displayDvds(searchCategory) {
         // build a table using the retrieved values
         var row = "<tr>";
         
-        row += '<td><a href="" onclick="showDvdDetails(' + id +')">' + title + "</a></td>";
+        row += '<td><a href="" onclick="showDvdDetails(' + id +'); return false;">' + title + "</a></td>";
 
         row += "<td>" + releaseYear + "</td>";
         row += "<td>" + director + "</td>";
@@ -71,8 +84,10 @@ function displayDvds(searchCategory) {
         row += "</tr>";
 
         contentRows.append(row);
-        $('#dvdList').show();
+        
       });
+
+      $('#dvdList').show();
     },
 
     // create error function to display API error messages
@@ -86,11 +101,14 @@ function displayDvds(searchCategory) {
   });
 }
 
-function clearDvdTable() {
-    $('#contentRows').empty();
+function deleteDvd(id) {
+    $('#deleteConfirmationModal').modal('toggle');
+
 }
 
 function showDvdDetails(id) {
+
+    console.log('This is showDvdDetail');
 
     $('#dvdList').hide();
 
@@ -111,12 +129,18 @@ function showDvdDetails(id) {
             var notes = dvd.notes;
 
             document.getElementById('displayTitleLabel').innerHTML = title;
+            document.getElementById('displayReleaseYearLabel').innerHTML = year;
+            document.getElementById('displayDirectorLabel').innerHTML = director;
+            document.getElementById('displayRatingLabel').innerHTML = rating;
+            document.getElementById('displayNotesLabel').innerHTML = notes;
             
+            
+            $('#displayDvdInfos').show();
         },
     
         // create error function to display API error messages
         error: function () {
-          
+            console.log('error');
 
         }
       });
@@ -132,6 +156,17 @@ function updateDVD(DVDId) {
         if(haveValidationErrors) {
             return false;
         }*/
+
+
+        if($('#editReleaseYear').val().length != 4)
+        {
+            $('#errorMessages').append($('<li>').attr({class: 'list-group-item list-group-item-danger'}).text('Need 4 digits - Release Year'));
+            return false;
+            
+        }
+
+        $('#errorMessage').empty();
+
         $.ajax({
             type: 'PUT',
             url: 'http://dvd-library.us-east-1.elasticbeanstalk.com/dvd/' + $('#editDVDId').val(),
@@ -148,15 +183,14 @@ function updateDVD(DVDId) {
                 'Content-Type': 'application/json'
             },
             'success': function() {
-               //$('#errorMessage').empty();
+               $('#errorMessage').empty();
                hideEditForm();
-               displayDvds();
             },
             'error': function() {
-                /*$('#errorMessages')
+                $('#errorMessages')
                 .append($('<li>')
                 .attr({class: 'list-group-item list-group-item-danger'})
-                .text('Error calling web service. Please try again later.'));*/
+                .text('Error calling web service. Please try again later.'));
             }
               
         })
@@ -165,6 +199,7 @@ function updateDVD(DVDId) {
 
 function showEditForm(DVDId) {
     //$('#errorMessages').empty();
+    $("#dvdList").hide();
     
     $.ajax({
         type: 'GET',
@@ -202,7 +237,6 @@ function showEditForm(DVDId) {
         }
     })
     
-    $('#dvdList').hide();
     $('#editFormDiv').show();
 }
 
@@ -215,8 +249,8 @@ function hideEditForm() {
     $('#editRating').val('');
     $('#editNotes').val('');
 
-    $('#dvdList').show();
     $('#editFormDiv').hide();
+    displayDvds();
 }
 
 function deleteDvd(dvdId) {
@@ -233,6 +267,14 @@ function addDVD() {
             return false;
         }
 
+        if($('#addReleaseYear').val().length != 4)
+        {
+            $('#errorMessages').append($('<li>').attr({class: 'list-group-item list-group-item-danger'}).text('Need 4 digits - Release Year'));
+            return false;
+            
+        }
+
+        $('#errorMessage').empty();
 
 
         $.ajax({
