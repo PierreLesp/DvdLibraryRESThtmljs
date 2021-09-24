@@ -1,4 +1,7 @@
 $('document').ready(function() {
+
+    console.log('Hellow World');
+
     displayDvds();
 
     $('#createButton').click(function (event) {
@@ -44,7 +47,7 @@ function displayDvds() {
         // build a table using the retrieved values
         var row = "<tr>";
         
-        row += '<td><a href="#" onclick="showDvdDetails(' + id +')">' + title + "</a></td>";
+        row += '<td><a href="" onclick="showDvdDetails(' + id +'); return false;">' + title + "</a></td>";
 
         row += "<td>" + releaseYear + "</td>";
         row += "<td>" + director + "</td>";
@@ -82,6 +85,8 @@ function deleteDvd(id) {
 
 function showDvdDetails(id) {
 
+    console.log('This is showDvdDetail');
+
     $('#dvdList').hide();
 
 
@@ -101,14 +106,18 @@ function showDvdDetails(id) {
             var notes = dvd.notes;
 
             document.getElementById('displayTitleLabel').innerHTML = title;
-
-            $(dvdDisplayInfos).show();
+            document.getElementById('displayReleaseYearLabel').innerHTML = year;
+            document.getElementById('displayDirectorLabel').innerHTML = director;
+            document.getElementById('displayRatingLabel').innerHTML = rating;
+            document.getElementById('displayNotesLabel').innerHTML = notes;
             
+            
+            $('#displayDvdInfos').show();
         },
     
         // create error function to display API error messages
         error: function () {
-          
+            console.log('error');
 
         }
       });
@@ -124,6 +133,17 @@ function updateDVD(DVDId) {
         if(haveValidationErrors) {
             return false;
         }*/
+
+
+        if($('#editReleaseYear').val().length != 4)
+        {
+            $('#errorMessages').append($('<li>').attr({class: 'list-group-item list-group-item-danger'}).text('Need 4 digits - Release Year'));
+            return false;
+            
+        }
+
+        $('#errorMessage').empty();
+
         $.ajax({
             type: 'PUT',
             url: 'http://dvd-library.us-east-1.elasticbeanstalk.com/dvd/' + $('#editDVDId').val(),
@@ -140,14 +160,14 @@ function updateDVD(DVDId) {
                 'Content-Type': 'application/json'
             },
             'success': function() {
-               //$('#errorMessage').empty();
+               $('#errorMessage').empty();
                hideEditForm();
             },
             'error': function() {
-                /*$('#errorMessages')
+                $('#errorMessages')
                 .append($('<li>')
                 .attr({class: 'list-group-item list-group-item-danger'})
-                .text('Error calling web service. Please try again later.'));*/
+                .text('Error calling web service. Please try again later.'));
             }
               
         })
@@ -224,6 +244,14 @@ function addDVD() {
             return false;
         }
 
+        if($('#addReleaseYear').val().length != 4)
+        {
+            $('#errorMessages').append($('<li>').attr({class: 'list-group-item list-group-item-danger'}).text('Need 4 digits - Release Year'));
+            return false;
+            
+        }
+
+        $('#errorMessage').empty();
 
 
         $.ajax({
