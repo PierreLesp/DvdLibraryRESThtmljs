@@ -13,22 +13,38 @@ $('document').ready(function() {
         $('#dvdList').show();
     });
 
-    
+    $('#searchButton').click(function(event) {
+        console.log("searching");
+        var selection = $('#searchCategory').val();
+        displayDvds(selection);
+    });
 
     addDVD();
     updateDVD();
 });
 
-function displayDvds() {
+function displayDvds(searchCategory) {
   clearDvdTable();
   hideEditForm();
-
+  console.log(searchCategory);
+  var category;
   var contentRows = $("#contentRows");
+  if (searchCategory == null) {
+      category = "";
+  } else if(searchCategory === "title") {
+      category = "/title";
+  } else if(searchCategory === "releaseyear") {
+      category = "/year";
+  } else if(searchCategory === "director") {
+      category = "/director";
+  } else if(searchCategory === "rating") {
+      category = "/rating";
+  }
 
   // retrieve and display existing data using GET request
   $.ajax({
     type: "GET",
-    url: "http://dvd-library.us-east-1.elasticbeanstalk.com/dvds",
+    url: "http://dvd-library.us-east-1.elasticbeanstalk.com/dvds" + category + "/" + $('#searchTerm').val(),
     success: function (dvdArray) {
       $.each(dvdArray, function (index, dvd) {
         //retrieve and store the values
