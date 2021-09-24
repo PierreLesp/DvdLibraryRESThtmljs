@@ -20,7 +20,9 @@ $('document').ready(function() {
 });
 
 function displayDvds() {
-    clearDvdTable();
+  clearDvdTable();
+  hideEditForm();
+
   var contentRows = $("#contentRows");
 
   // retrieve and display existing data using GET request
@@ -45,7 +47,7 @@ function displayDvds() {
         row += "<td>" + director + "</td>";
         row += "<td>" + rating + "</td>";
         row +=
-          '<td><button type="button" class="btn btn-info" onclick="showEditForm(' +
+          '<td><button type="button" class="btn btn-info mr-4" onclick="showEditForm(' +
           id +
           ')">Edit</button><button type="button" class="btn btn-danger" onclick="deleteDvd(' +
           id +
