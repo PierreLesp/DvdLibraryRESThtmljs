@@ -1,6 +1,6 @@
 $('document').ready(function() {
     displayDvds();
-
+    hideEditForm();
     $('#createButton').click(function (event) {
 
         $('#addFormDiv').show();
@@ -53,6 +53,7 @@ function displayDvds() {
         row += "</tr>";
 
         contentRows.append(row);
+        $('#dvdList').show();
       });
     },
 
@@ -115,13 +116,13 @@ function updateDVD(DVDId) {
         }*/
         $.ajax({
             type: 'PUT',
-            url: 'http://DVDlist.us-east-1.elasticbeanstalk.com/dvd/' + $('#editDVDId').val(),
+            url: 'http://dvd-library.us-east-1.elasticbeanstalk.com/dvd/' + $('#editDVDId').val(),
             data: JSON.stringify({
-                Id: $('#editDVDId').val(),
+                id: $('#editDVDId').val(),
                 title: $('#editTitle').val(),
                 releaseYear: $('#editReleaseYear').val(),
                 director: $('#editDirector').val(),
-                rating: $('#editRating').val(),
+                rating: $('#editRating option:selected').text(),
                 notes: $('#editNotes').val()
             }),
             headers: {
@@ -130,9 +131,18 @@ function updateDVD(DVDId) {
             },
             'dataType': 'json',
             'success': function() {
-                /*$('#errorMessage').empty();
-                hideEditForm();
-                loadDVDs();*/
+               //$('#errorMessage').empty();
+               //   for some reason it will not go to 'success' even when postman says it is
+               /* alert( "EDIT SUCCESS." );
+               $('#editTitle').val('');
+               $('#editReleaseYear').val('');
+               $('#editDirector').val('');
+               $('#editNotes').val('');
+
+               $('#editFormDiv').hide();
+               displayDvds();
+               $('#dvdList').show();
+               */
             },
             'error': function() {
                 /*$('#errorMessages')
@@ -140,7 +150,19 @@ function updateDVD(DVDId) {
                 .attr({class: 'list-group-item list-group-item-danger'})
                 .text('Error calling web service. Please try again later.'));*/
             }
+              
         })
+             // Dvd update is only displayed after page refresh. I suspect that there is a race condition due to Ajax
+             // being asyncronous 
+               $('#editTitle').val('');
+               $('#editReleaseYear').val('');
+               $('#editDirector').val('');
+               $('#editNotes').val('');
+
+               $('#editFormDiv').hide();
+               
+               displayDvds();
+              
     })
 }
 
@@ -149,7 +171,7 @@ function showEditForm(DVDId) {
     
     $.ajax({
         type: 'GET',
-        url: 'http://DVDlist.us-east-1.elasticbeanstalk.com/dvd/' + DVDId,
+        url: 'http://dvd-library.us-east-1.elasticbeanstalk.com/dvd/' + DVDId,
         success: function(data, status) {
             $('#editTitle').val('');
             $('#editReleaseYear').val('');
@@ -157,10 +179,21 @@ function showEditForm(DVDId) {
             $('#editRating').val('');
             $('#editNotes').val('');
             
+            $('#editDVDId').val(data.id);
             $('#editTitle').val(data.title);
             $('#editReleaseYear').val(data.releaseYear);
+            
             $('#editDirector').val(data.director);
-            $('#editRating').val(data.rating);
+            var rating = data.rating;
+            if (rating === "G") {
+                $("#editRating").val("g").change();
+            } else if (rating === "13+"){
+                $("#editRating").val("thirteen").change();
+            } else if (rating === "16+") {
+                $("#editRating").val("sixteen").change();
+            } else {
+                $("#editRating").val("eighteen").change();
+            }
             $('#editNotes').val(data.notes);
             
         },
@@ -172,7 +205,7 @@ function showEditForm(DVDId) {
         }
     })
     
-    $('#dvdTableDiv').hide();
+    $('#dvdList').hide();
     $('#editFormDiv').show();
 }
 
@@ -185,7 +218,7 @@ function hideEditForm() {
     $('#editRating').val('');
     $('#editNotes').val('');
 
-    //$('#DVDTableDiv').show();
+    $('#dvdList').show();
     $('#editFormDiv').hide();
 }
 
