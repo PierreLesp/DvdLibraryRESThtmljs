@@ -13,6 +13,10 @@ $('document').ready(function() {
         $('#dvdList').show();
     });
 
+    $('#deleteConfirmationModal').on('show.bs.modal', function(e) {
+
+        
+    });
     
 
     addDVD();
@@ -40,7 +44,7 @@ function displayDvds() {
         // build a table using the retrieved values
         var row = "<tr>";
         
-        row += '<td><a href="" onclick="showDvdDetails(' + id +')">' + title + "</a></td>";
+        row += '<td><a href="#" onclick="showDvdDetails(' + id +')">' + title + "</a></td>";
 
         row += "<td>" + releaseYear + "</td>";
         row += "<td>" + director + "</td>";
@@ -71,6 +75,11 @@ function displayDvds() {
   });
 }
 
+function deleteDvd(id) {
+    $('#deleteConfirmationModal').modal('toggle');
+
+}
+
 function showDvdDetails(id) {
 
     $('#dvdList').hide();
@@ -92,6 +101,8 @@ function showDvdDetails(id) {
             var notes = dvd.notes;
 
             document.getElementById('displayTitleLabel').innerHTML = title;
+
+            $(dvdDisplayInfos).show();
             
         },
     
