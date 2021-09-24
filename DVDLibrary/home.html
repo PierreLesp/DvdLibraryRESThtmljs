@@ -66,7 +66,6 @@
                                     required>
                         </div>
                     </div>
-
                     <!--  EMAIL "REQUIRED" -->
                     <div class="form-group row"> 
                         <label for="addRating" class="col-md-4 control-label">
@@ -81,6 +80,7 @@
                                 <option value="18+">18+</option>
                                 </select>
                         </div>
+
                     </div>
 
                     <!--  PHONE NUMBER -->
@@ -181,7 +181,7 @@
 
                         <div class="col-md-8">
                             <input type="text" 
-                                    class="form-control"
+                                    class="form-control editInput"
                                     id="editTitle"
                                     placeholder="Title" 
                                     required>
@@ -198,8 +198,7 @@
                                 id="editReleaseYear"
                                 placeholder="Release Year" 
                                 required>
-                        </div>
-                
+                        </div> 
                     </div>
                     <div class="form-group row"> 
                         <label for="editDirector" class="col-md-4 control-label">
@@ -212,7 +211,7 @@
                                 placeholder="Director" 
                                 required>
                         </div>
-                    </div>
+                     </div>
                     <div class="form-group row"> 
                         <label for="editRating" class="col-md-4 control-label">
                             Rating:
@@ -230,37 +229,35 @@
                         <label for="editNotes" class="col-md-4 control-label">
                             Notes:
                         </label>
-
-                        <div class="col-md-8">
-                            <input type="text" 
-                                class="form-control notesInput"
-                                id="editNotes"
-                                placeholder="" 
-                                required>
-                        </div>
-                
-                    </div>
+                        <textarea class="col-md-8" 
+                                   class="form-control notesInput"
+                                   id="editNotes"
+                                   placeholder="" 
+                                   required>
+                        </textarea>
+                    </div>               
                     <div class="form-group row">
                         <div class="offset-md-3 col-md-3">
                             <input type="hidden" id="editDVDId">
-                            <button type="button"
-                                    id="editCancelButton"
-                                    class="btn btn-danger"
-                                    onclick="hideEditForm()">
+                            <button 
+                                type="button"
+                                id="editCancelButton"
+                                class="btn btn-danger"
+                                onclick="hideEditForm()">
                                 Cancel
                             </button>
                         </div>
                         <div class="col-md-6">
-                            <button type="button"
-                                    id="updateButton"
-                                    class="btn btn-success">
+                            <button 
+                                type="button"
+                                id="updateButton"
+                                class="btn btn-success">
                                 Save Changes
                             </button>
                         </div>
                     </div>
                 </form>
             </div>
-
 
             <div id='displayDvdInfos' style="display:none;">
 
