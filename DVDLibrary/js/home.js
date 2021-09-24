@@ -16,6 +16,7 @@ $('document').ready(function() {
         $('#dvdList').show();
     });
 
+
     $('#searchButton').click(function(event) {
         console.log("searching");
         var selection = $('#searchCategory').val();
@@ -33,11 +34,7 @@ $('document').ready(function() {
     updateDVD();
 });
 
-
 function displayDvds(searchCategory) {
-  clearDvdTable();
-  hideEditForm();
-  console.log(searchCategory);
   var category;
   var contentRows = $("#contentRows");
   if (searchCategory == null) {
@@ -51,7 +48,9 @@ function displayDvds(searchCategory) {
   } else if(searchCategory === "rating") {
       category = "/rating";
   }
-  $('#contentRows').empty();
+    var contentRows = $("#contentRows");
+
+    $('#contentRows').empty();
 
 
   // retrieve and display existing data using GET request
